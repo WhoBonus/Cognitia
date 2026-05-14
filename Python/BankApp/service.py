@@ -7,9 +7,9 @@ class BankService:
         self.repo = BankRepository()
 
     #Add customer
-    def addCustomer (self, customer):
+    async def addCustomer (self, customer):
         #Implement automatic ID inncr
-        allCustomers = self.repo.getCustomers()
+        allCustomers = await self.repo.getCustomers()
         validIDs = [c['id'] for c in allCustomers if c.get('id') is not None]
         #if list empty
         if not allCustomers:
@@ -17,28 +17,20 @@ class BankService:
         else:
             #add one to the highest existing ID
             newID = max(validIDs) + 1
-
-        #Do the same for account ID's 
-        #for customer in allCustomers:
-        #validAccountIDs = [c['id'] for c in allCustomers["accounts".Id] if c.get('id') is not None]
-        #if not validAccountIDs:
-           # newAccountID = 1
-        #else:
-         #   newID = max(validAccountIDs)
             
         customerData = customer.model_dump()
         customerData['id'] = newID
 
-        return self.repo.createCustomer(customerData)
+        return await self.repo.createCustomer(customerData)
     
     #get customer 
-    def getCustomer (self, customerID: int):
-        return self.repo.getCustomerByID(customerID)
+    async def getCustomer (self, customerID: int):
+        return await self.repo.getCustomerByID(customerID)
     
     #Get customer accounts
-    def getAllCustomerAccounts (self, customerID : int):
+    async def getAllCustomerAccounts (self, customerID : int):
         #get all customers then a seperate list for the accounts
-        allCustomers = self.repo.getCustomers()
+        allCustomers = await self.repo.getCustomers()
         allAccounts = []
         for customer in allCustomers:
             for account in customer['accounts']:
@@ -57,7 +49,7 @@ class BankService:
         return allAccounts
     
     #Get Premiums
-    def getPremiumAccounts(self):
+    async def getPremiumAccounts(self):
         #First get all customers
         allCustomers = self.repo.getCustomers()
 
