@@ -25,7 +25,7 @@ class BankRepository:
     
     #connect to DB
     def __init__(self):
-        rawPassword = 'evf58"#t=VPE"a$'
+       
         safe_password = urllib.parse.quote_plus(rawPassword)
 
         self.uri = f"mongodb+srv://dbUser:{safe_password}@bankapp-cluster.wdb1f8c.mongodb.net/?appName=BankApp-Cluster"
