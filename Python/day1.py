@@ -30,6 +30,19 @@ class Main:
                 topStudent = student
 
         print(f"Top Student: {topStudent.getName()} has {topStudent.getMarks()} marks.")
+
+    def rankStudents(students: list[student]):
+        #order the students
+        rankedStudents = []
+        for student in students:
+            rankedStudents.append(student)
+        
+        for i in range(len(rankedStudents)):
+             for j in range(0, len(rankedStudents) - i - 1):
+                # swap if num found is greater than the next 
+                if rankedStudents[i].getMarks() < rankedStudents[j].getMarks():
+                    rankedStudents[i], rankedStudents[j] = rankedStudents[j], rankedStudents[i] 
+        
         
 
     def main():

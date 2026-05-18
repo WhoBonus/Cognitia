@@ -20,3 +20,16 @@ public class FindHighest {
         return max;
     }
 }
+
+//git notes
+//git clone -b"" (repo link)
+//git status 
+
+//local to remote
+//git remote add origin "link"
+//git remote show origin
+//git push origin 
+
+//onboarding 
+//use git clone to clone the repo
+//
